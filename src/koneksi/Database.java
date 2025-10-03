@@ -31,9 +31,9 @@ public class Database {
 //        pass = myProperties.getProperty("DBPassword");
 
         driver = "com.mysql.cj.jdbc.Driver";
-        database = "jdbc:mysql://localhost/db_akademik";
-        user = "lotso";
-        pass = "123";
+        database = "jdbc:mysql://localhost:3306/db_akademik?useSSL=false&serverTimezone=UTC";
+        user = "root";
+        pass = "";
 
         Class.forName(driver);
         connection = DriverManager.getConnection(database, user, pass);
@@ -41,8 +41,6 @@ public class Database {
       } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Koneksi Tidak Berhasil!", "Pesan", JOptionPane.INFORMATION_MESSAGE);
         System.out.println("Error:" + e.getMessage());
-        System.out.println("Password dari file: " + pass);
-
       }
     }
     return connection;

@@ -32,7 +32,7 @@ CREATE TABLE `DETIL_KRS` (
   `Semester` varchar(8) NOT NULL,
   `NIM` char(10) NOT NULL,
   `KodeMTK` char(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -45,7 +45,7 @@ CREATE TABLE `KRS` (
   `Semester` varchar(8) NOT NULL,
   `NIM` char(10) NOT NULL,
   `Tgl_KRS` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -57,7 +57,7 @@ CREATE TABLE `Mahasiswa` (
   `NIM` char(10) NOT NULL,
   `Nama` varchar(50) DEFAULT NULL,
   `Alamat` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Mahasiswa`
@@ -78,7 +78,7 @@ CREATE TABLE `Matakuliah` (
   `NamaMTK` varchar(50) DEFAULT NULL,
   `SKS` tinyint(4) DEFAULT NULL,
   `KodePrasyarat` char(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -89,7 +89,7 @@ CREATE TABLE `Matakuliah` (
 CREATE TABLE `PERIODE` (
   `TA` varchar(9) NOT NULL,
   `Semester` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `PERIODE`
