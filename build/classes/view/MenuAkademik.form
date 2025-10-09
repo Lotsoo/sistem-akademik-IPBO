@@ -2,6 +2,24 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Container class="javax.swing.JMenuBar" name="jMenuBar2">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenu3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="File"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edit"/>
+          </Properties>
+        </Menu>
+      </SubComponents>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuFile">
@@ -11,26 +29,23 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuMahasiswa">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Mahasiswa"/>
+                <Property name="text" type="java.lang.String" value="Entri Data Mahasiswa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMahasiswaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuMatakuliah">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Matakuliah"/>
+                <Property name="text" type="java.lang.String" value="Entri Data Matakuliah"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMatakuliahActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuPeriode">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Periode"/>
+                <Property name="text" type="java.lang.String" value="Entri Data Periode"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="-------------"/>
-              </Properties>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuKeluar">
               <Properties>
@@ -47,9 +62,31 @@
             <Property name="text" type="java.lang.String" value="Transaksi"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuKRSS">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuKRS">
               <Properties>
-                <Property name="text" type="java.lang.String" value="KRSS"/>
+                <Property name="text" type="java.lang.String" value="KRS"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="mnuLaporan">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Laporan"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuCetakDaftarMahasiswa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cetak Daftar Mahasiswa"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuCetakDaftarMatakuliah">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cetak Daftar Matakuliah"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuCetakKRS">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cetak KRS"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -80,12 +117,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="507" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="276" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="258" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>

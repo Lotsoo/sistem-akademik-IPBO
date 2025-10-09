@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package sistemakademik;
 
@@ -8,15 +9,14 @@ import view.MenuAkademik;
 
 /**
  *
- * @author lotso
+ * @author Dosen
  */
 public class SistemAkademik {
-
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String[] args) {
-    new MenuAkademik().setVisible(true);
-  }
-  
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        MenuAkademik objMenu = new MenuAkademik();
+        objMenu.setVisible(true);
+    }
 }
