@@ -72,8 +72,8 @@ public class Controller_Mahasiswa {
         varMahasiswa m = new varMahasiswa();
         
         m.setvNIM(form.getTxtNIM().getText());
-        m.setvNIM(form.getTxtNama().getText());
-        m.setvNIM(form.getTxtAlamat().getText());
+        m.setvNama(form.getTxtNama().getText());
+        m.setvAlamat(form.getTxtAlamat().getText());
         
         model.insert(m);
     }
@@ -82,8 +82,8 @@ public class Controller_Mahasiswa {
         varMahasiswa m = new varMahasiswa();
         
         m.setvNIM(form.getTxtNIM().getText());
-        m.setvNIM(form.getTxtNama().getText());
-        m.setvNIM(form.getTxtAlamat().getText());
+        m.setvNama(form.getTxtNama().getText());
+        m.setvAlamat(form.getTxtAlamat().getText());
         
         model.update(m);
     }

@@ -16,7 +16,7 @@ public interface DAO_Interface<A> {
 
     public void update(A Object);
 
-    public void delete(String Object);
+    public void delete(String key);
 
     public List<A> getAll();
 

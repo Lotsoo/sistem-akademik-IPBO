@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.Controller_Mahasiswa;
+import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -15,6 +17,8 @@ import javax.swing.JTextField;
  */
 public class FrmMahasiswa extends javax.swing.JFrame {
 
+    controller.Controller_Mahasiswa controller_Mahasiswa;
+
     /**
      * Creates new form frmMahasiswa
      */
@@ -23,6 +27,8 @@ public class FrmMahasiswa extends javax.swing.JFrame {
         setTitle("Entri Data Mahasiswa");
         setSize(450, 350);
         setLocationRelativeTo(this);
+        controller_Mahasiswa = new Controller_Mahasiswa(this);
+        controller_Mahasiswa.reset();
     }
 
     public JTable getTblMahasiswa() {
@@ -87,11 +93,25 @@ public class FrmMahasiswa extends javax.swing.JFrame {
 
         lblAlamat.setText("Alamat :");
 
+        txtNIM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNIMKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNIMKeyReleased(evt);
+            }
+        });
+
         txtAlamat.setColumns(20);
         txtAlamat.setRows(5);
         jScrollPane1.setViewportView(txtAlamat);
 
         cmdTambah.setText("Tambah");
+        cmdTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdTambahActionPerformed(evt);
+            }
+        });
 
         cmdUbah.setText("Ubah");
         cmdUbah.addActionListener(new java.awt.event.ActionListener() {
@@ -101,8 +121,18 @@ public class FrmMahasiswa extends javax.swing.JFrame {
         });
 
         cmdHapus.setText("Hapus");
+        cmdHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdHapusActionPerformed(evt);
+            }
+        });
 
         cmdBatal.setText("Batal");
+        cmdBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBatalActionPerformed(evt);
+            }
+        });
 
         tblMahasiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,6 +145,11 @@ public class FrmMahasiswa extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblMahasiswa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMahasiswaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblMahasiswa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,9 +170,9 @@ public class FrmMahasiswa extends javax.swing.JFrame {
                                     .addComponent(lblNama))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(txtNama)))
+                            .addComponent(txtNama)
+                            .addComponent(txtNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cmdTambah)
@@ -179,8 +214,43 @@ public class FrmMahasiswa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdUbahActionPerformed
-        // TODO add your handling code here:
+        controller_Mahasiswa.update();
+        controller_Mahasiswa.reset();
     }//GEN-LAST:event_cmdUbahActionPerformed
+
+    private void cmdTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTambahActionPerformed
+        controller_Mahasiswa.insert();
+        controller_Mahasiswa.reset();
+    }//GEN-LAST:event_cmdTambahActionPerformed
+
+    private void cmdHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdHapusActionPerformed
+        controller_Mahasiswa.delete();
+        controller_Mahasiswa.reset();
+    }//GEN-LAST:event_cmdHapusActionPerformed
+
+    private void cmdBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBatalActionPerformed
+        controller_Mahasiswa.reset();
+    }//GEN-LAST:event_cmdBatalActionPerformed
+
+    private void tblMahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMahasiswaMouseClicked
+        controller_Mahasiswa.isiField(tblMahasiswa.getSelectedRow());
+        this.txtNama.requestFocus();
+    }//GEN-LAST:event_tblMahasiswaMouseClicked
+
+    private void txtNIMKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIMKeyReleased
+controller_Mahasiswa.isiTabelCari();
+    }//GEN-LAST:event_txtNIMKeyReleased
+
+    private void txtNIMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNIMKeyPressed
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           if (txtNIM.getText().isEmpty()) {
+               controller_Mahasiswa.reset();
+           } else {
+               controller_Mahasiswa.isiTabelCari();
+               this.txtNama.requestFocus();
+           }
+       }
+    }//GEN-LAST:event_txtNIMKeyPressed
 
     /**
      * @param args the command line arguments

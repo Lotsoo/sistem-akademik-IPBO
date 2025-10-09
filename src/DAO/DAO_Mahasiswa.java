@@ -29,7 +29,7 @@ public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa> {
     String UPDATE = "UPDATE mahasiswa set nama=?, alamat=? WHERE NIM=?";
     String DELETE = "DELETE FROM mahasiswa WHERE NIM=?";
     String SELECT = "SELECT * FROM mahasiswa";
-    String CARI = "SELECT * FROM mahasiwa WHERE NIM=?";
+    String CARI = "SELECT * FROM mahasiswa WHERE NIM=?";
 
     @Override
     public void insert(varMahasiswa Object) {
@@ -72,6 +72,7 @@ public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa> {
         }
     }
 
+    @Override
     public void delete(String nim) {
         PreparedStatement preparedStatement = null;
         try {
@@ -113,8 +114,13 @@ public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa> {
         PreparedStatement preparedStatement = null;
         try {
             list = new ArrayList<varMahasiswa>();
-            preparedStatement = connection.prepareStatement("SELECT");
+            // Sebelum:
+            // preparedStatement = connection.prepareStatement("SELECT");
+            // Sesudah (menggunakan LIKE untuk pencarian):
+            preparedStatement = connection.prepareStatement("SELECT * FROM mahasiswa WHERE NIM LIKE ? OR nama LIKE ? OR alamat LIKE ?");
             preparedStatement.setString(1, "%" + key + "%");
+            preparedStatement.setString(2, "%" + key + "%"); // Tambahkan pencarian berdasarkan nama
+            preparedStatement.setString(3, "%" + key + "%"); // Tambahkan pencarian berdasarkan alamat
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 varMahasiswa m = new varMahasiswa();

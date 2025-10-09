@@ -10,8 +10,6 @@ package model;
  */
 public class varMahasiswa {
     private String vNIM;
-    private String vNama;
-    private String vAlamat;
 
     public String getvNIM() {
         return vNIM;
@@ -36,4 +34,6 @@ public class varMahasiswa {
     public void setvAlamat(String vAlamat) {
         this.vAlamat = vAlamat;
     }
+    private String vNama;
+    private String vAlamat;
 }
