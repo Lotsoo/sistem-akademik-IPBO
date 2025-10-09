@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,19 +17,20 @@ import koneksi.Database;
  *
  * @author Mahasiswa
  */
-public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa>{
+public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa> {
+
     Connection connection;
-    
-    public DAO_Mahasiswa(){
+
+    public DAO_Mahasiswa() {
         connection = Database.KoneksiDB();
     }
-    
+
     String INSERT = "INSERT INTO mahasiswa(NIM, nama, alamat) VALUES(?,?,?)";
     String UPDATE = "UPDATE mahasiswa set nama=?, alamat=? WHERE NIM=?";
     String DELETE = "DELETE FROM mahasiswa WHERE NIM=?";
     String SELECT = "SELECT * FROM mahasiswa";
     String CARI = "SELECT * FROM mahasiwa WHERE NIM=?";
-    
+
     @Override
     public void insert(varMahasiswa Object) {
         PreparedStatement preparedStatement = null;
@@ -36,10 +38,10 @@ public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa>{
             preparedStatement = connection.prepareStatement(CARI);
             preparedStatement.setString(1, Object.getvNIM());
             ResultSet resultSet = preparedStatement.executeQuery();
-            
+
             if (resultSet.next()) {
                 JOptionPane.showMessageDialog(null, "Data sudah pernah disimpan!");
-            } else{
+            } else {
                 preparedStatement = null;
                 preparedStatement = connection.prepareStatement(INSERT);
                 preparedStatement.setString(1, Object.getvNIM());
@@ -56,7 +58,7 @@ public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa>{
 
     @Override
     public void update(varMahasiswa Object) {
-     PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(UPDATE);
             preparedStatement.setString(1, Object.getvNama());
@@ -91,7 +93,7 @@ public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa>{
             list = new ArrayList<varMahasiswa>();
             preparedStatement = connection.prepareStatement(SELECT);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {                
+            while (resultSet.next()) {
                 varMahasiswa m = new varMahasiswa();
                 m.setvNIM(resultSet.getString("NIM"));
                 m.setvNama(resultSet.getString("Nama"));
@@ -112,9 +114,9 @@ public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa>{
         try {
             list = new ArrayList<varMahasiswa>();
             preparedStatement = connection.prepareStatement("SELECT");
-            preparedStatement.setString(1, "%"+key+"%");
+            preparedStatement.setString(1, "%" + key + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {                
+            while (resultSet.next()) {
                 varMahasiswa m = new varMahasiswa();
                 m.setvNIM(resultSet.getString("NIM"));
                 m.setvNama(resultSet.getString("Nama"));
@@ -127,10 +129,4 @@ public class DAO_Mahasiswa implements DAO_Interface<varMahasiswa>{
         }
         return list;
     }
-
-    @Override
-    public void delete(varMahasiswa Object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
