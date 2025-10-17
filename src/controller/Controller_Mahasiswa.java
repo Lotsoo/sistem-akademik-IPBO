@@ -18,12 +18,12 @@ import view.FrmMahasiswa;
  * @author Mahasiswa
  */
 public class Controller_Mahasiswa {
-    
+
     FrmMahasiswa form;
     DAO_Interface<varMahasiswa> model;
     List<varMahasiswa> list;
     String[] header;
-    
+
     public Controller_Mahasiswa(FrmMahasiswa form) {
         this.form = form;
         model = new DAO_Mahasiswa();
@@ -33,24 +33,24 @@ public class Controller_Mahasiswa {
         form.getTblMahasiswa().setShowVerticalLines(true);
         form.getTblMahasiswa().setGridColor(Color.blue);
     }
-    
+
     public void reset() {
         form.getTxtNIM().setText("");
         form.getTxtNama().setText("");
         form.getTxtAlamat().setText("");
         isiTabel();
     }
-    
+
     public void isiTabel() {
         list = model.getAll();
-        
+
         DefaultTableModel tableModel = new DefaultTableModel(null, header) {
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return false;
             }
         };
-        
+
         Object[] data = new Object[header.length];
         for (varMahasiswa mahasiswa : list) {
             data[0] = mahasiswa.getvNIM();
@@ -58,46 +58,52 @@ public class Controller_Mahasiswa {
             data[2] = mahasiswa.getvAlamat();
             tableModel.addRow(data);
         }
-        
+
         form.getTblMahasiswa().setModel(tableModel);
     }
-    
+
     public void isiField(int row) {
         form.getTxtNIM().setText(list.get(row).getvNIM());
         form.getTxtNama().setText(list.get(row).getvNama());
         form.getTxtAlamat().setText(list.get(row).getvAlamat());
     }
-    
+
     public void insert() {
         varMahasiswa m = new varMahasiswa();
-        
+
         m.setvNIM(form.getTxtNIM().getText());
         m.setvNama(form.getTxtNama().getText());
         m.setvAlamat(form.getTxtAlamat().getText());
-        
+
         model.insert(m);
     }
-    
+
     public void update() {
         varMahasiswa m = new varMahasiswa();
-        
+
         m.setvNIM(form.getTxtNIM().getText());
         m.setvNama(form.getTxtNama().getText());
         m.setvAlamat(form.getTxtAlamat().getText());
-        
+
         model.update(m);
     }
-    
+
     public void delete() {
         if (!form.getTxtNIM().getText().trim().isEmpty()) {
             String nim = form.getTxtNIM().getText();
-            
-            model.delete(nim);
+
+            int confirm = JOptionPane.showConfirmDialog(form, "Yakin ingin dihapus?", "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                model.delete(nim);
+                JOptionPane.showMessageDialog(form, "Data berhasil dihapus!");
+            } else {
+                JOptionPane.showMessageDialog(form, "Hapus dibatalkan");
+            }
         } else {
             JOptionPane.showMessageDialog(form, "Pilih data yang akan dihapus!");
         }
     }
-    
+
     public void isiTabelCari() {
         list = model.getCari(form.getTxtNIM().getText().trim());
         DefaultTableModel tableModel = new DefaultTableModel(null, header);
@@ -108,7 +114,7 @@ public class Controller_Mahasiswa {
             data[2] = m.getvAlamat();
             tableModel.addRow(data);
         }
-        
+
         form.getTblMahasiswa().setModel(tableModel);
     }
 }
